@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Display Vendors</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            text-align: center;
+            color: #333;
+            text-decoration: none;
+            padding: 8px 16px;
+            background-color: #4caf50;
+            color: white;
+            border-radius: 4px;
+        }
+
+        a:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+<h2>Vendors</h2>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>Actions</th>
+    </tr>
+    <tr th:each="vendor : ${vendors}">
+        <td th:text="${vendor.id}"></td>
+        <td th:text="${vendor.code}"></td>
+        <td th:text="${vendor.name}"></td>
+        <td th:text="${vendor.type}"></td>
+        <td th:text="${vendor.email}"></td>
+        <td th:text="${vendor.phone}"></td>
+        <td th:text="${vendor.address}"></td>
+        <td>
+            <a th:href="@{/deleteVendor(id=${vendor.id})}">Delete</a>
+            <a th:href="@{/showUpdate(id=${vendor.id})}">Edit</a>
+        </td>
+    </tr>
+</table>
+<a th:href="@{/showCreate}">Add Vendor</a>
+</body>
+
+</html>

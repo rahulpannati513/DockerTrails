@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  restaurantdb:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: restProject
+    volumes:
+      - /Users/edtaja/Desktop/RestaurantProject/postgres-data
+    ports:
+      - "5432:5432"
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: project@project.com
+      PGADMIN_DEFAULT_PASSWORD: restProject
+    ports:
+      - "5050:80"
+    depends_on:
+      - restaurantdb
